@@ -1,0 +1,85 @@
+{% extends 'groceryapp/base.html' %}
+{% block content %}
+<br>
+
+<style>
+  body {
+    background-color: wheat;
+  }
+
+  .product-detail-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+
+  .product-detail-card h4 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .form-group label {
+    font-weight: bold;
+  }
+
+  .form-control {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .btn-custom {
+    margin-top: 15px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .btn-sale {
+    background-color: palevioletred;
+  }
+
+  .btn-stock {
+    background-color: darkcyan;
+  }
+</style>
+
+<div class="container">
+  <div class="product-detail-card">
+    <h4>Product Details</h4>
+    <div class="form-group">
+      <label for="item_name">Item Name</label>
+      <input type="text" id="item_name" name="item_name" class="form-control" value="{{ product.item_name }}" readonly>
+    </div>
+    <div class="form-group">
+      <label for="total_quantity">Total Quantity</label>
+      <input type="number" id="total_quantity" name="total_quantity" class="form-control" value="{{ product.total_quantity }}" readonly>
+    </div>
+    <div class="form-group">
+      <label for="unit_cost">Unit Cost</label>
+      <input type="text" id="unit_cost" name="unit_cost" class="form-control" value="{{ product.unit_cost }}" readonly>
+    </div>
+    <div class="form-group">
+      <label for="unit_price">Total Price (UGX)</label>
+      <input type="text" id="unit_price" name="unit_price" class="form-control" value="UGX {{ product.unit_price }}" readonly>
+    </div>
+
+    <a href="{% url 'issue_item' product.id %}" class="btn btn-secondary btn-custom btn-sale">
+      Sale Item
+    </a>
+    <a href="{% url 'Addstock' product.id %}" class="btn btn-secondary btn-custom btn-stock">
+      Add to Stock
+    </a>
+  </div>
+</div>
+{% endblock %}

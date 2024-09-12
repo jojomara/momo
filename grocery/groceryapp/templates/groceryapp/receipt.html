@@ -1,0 +1,101 @@
+{% extends 'groceryapp/base.html' %}
+{% block content %}
+<br /><br>
+
+<style>
+  body {
+    background-color: wheat;
+  }
+
+  .th-item {
+    color: lightblue;
+  }
+  .th-amount {
+    color: lightgreen;
+  }
+  .th-quantity {
+    color: lightcoral;
+  }
+  .th-total {
+    color: lightgoldenrodyellow;
+  }
+  .th-change {
+    color: palevioletred;
+  }
+  
+  .btn-final-receipt {
+    background-color: lightseagreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn-final-receipt:hover {
+    background-color: seagreen;
+  }
+
+  .btn-delete-receipt {
+    background-color: tomato;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn-delete-receipt:hover {
+    background-color: red;
+  }
+</style>
+
+<div class="container">
+  <h1 class="card-header text-center">ALL RECEIPTS</h1><br>
+  
+  {% for sale in sales %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h3 class="card-title">Customer: {{ sale.issued_to | title }}</h3>
+      
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row" class="th-item">Item:</th>
+            <td>{{ sale.item }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="th-amount">Amount Paid:</th>
+            <td>UGX {{ sale.amount_received }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="th-quantity">Quantity:</th>
+            <td>{{ sale.quantity }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="th-total">Total Bill:</th>
+            <td>UGX {{ sale.get_total }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="th-change">Change:</th>
+            <td>UGX {{ sale.get_change }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between">
+        <form action="{% url 'receipt_detail' sale.id %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-final-receipt" value="Final Receipt">
+        </form>
+
+        <form action="{% url 'delete_receipt' sale.id %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-delete-receipt" value="Delete Receipt">
+        </form>
+      </div>
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+</div>
+
+{% endblock %}

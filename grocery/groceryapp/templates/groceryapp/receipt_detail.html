@@ -1,0 +1,91 @@
+{% extends 'groceryapp/base.html' %}
+{% block content %}
+<br />
+<style>
+  body {
+    background-color: wheat;
+  }
+  .card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .card-header {
+    border-bottom: 5px solid #ddd;
+    background-color: #f8f9fa;
+    padding: 15px;
+  }
+  .card-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .card-body {
+    padding-top: 20px;
+    background-color: #ffe4e1;
+  }
+  table {
+    margin-bottom: 0;
+  }
+  td {
+    vertical-align: middle;
+  }
+  .text-xs-center {
+    text-align: center;
+  }
+  .text-xs-right {
+    text-align: right;
+  }
+  .btn-print {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header text-center">
+          <h1>ORDER SUMMARY</h1>
+          <h2 class="lead">Customer Name: {{ receipt.issued_to|title }}</h2>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th><strong>Item Name</strong></th>
+                    <th class="text-xs-center"><strong>Item Quantity</strong></th>
+                    <th class="text-xs-right"><strong>Total Bill (Ugx)</strong></th>
+                    <th class="text-xs-right"><strong>Amount Paid (Ugx)</strong></th>
+                    <th class="text-xs-right"><strong>Total Change (Ugx)</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ receipt.item.item_name|title }}</td>
+                    <td class="text-xs-center">{{ receipt.quantity }}</td>
+                    <td class="text-xs-right">Ugx {{ receipt.get_total }}</td>
+                    <td class="text-xs-right">Ugx {{ receipt.amount_received }}</td>
+                    <td class="text-xs-right">Ugx {{ receipt.get_change }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="btn-print" onclick="window.print()">Print Receipt</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

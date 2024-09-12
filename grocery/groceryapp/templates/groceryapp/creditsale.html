@@ -1,0 +1,38 @@
+<!-- credit_sale_list.html -->
+{% extends 'groceryapp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Credit Sales by Branch</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>Branch</th>
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for branch, sales in sales_by_branch.items %}
+                <tr>
+                    <td colspan="4"><strong>{{ branch.name }}</strong></td>
+                </tr>
+                {% for sale in sales %}
+                    <tr>
+                        <td></td> <!-- Empty cell for alignment -->
+                        <td>{{ sale.customer }}</td>
+                        <td>{{ sale.amount }}</td>
+                        <td>{{ sale.date }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No sales recorded for this branch.</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'groceryapp/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="product-detail-card">
+    <h4>Add Stock to {{ product.item_name }}</h4>
+    <form action="{% url 'Astock' product.id %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="item_name">Item Name</label>
+        <input type="text" id="item_name" name="item_name" class="form-control" value="{{ product.item_name }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="total_quantity">Current Quantity</label>
+        <input type="number" id="total_quantity" name="total_quantity" class="form-control" value="{{ product.total_quantity }}" readonly>
+      </div>
+      <div class="form-group">
+        <label for="add_quantity">Quantity to Add</label>
+        <input type="number" id="add_quantity" name="add_quantity" class="form-control" min="1" required>
+      </div>
+      <button type="submit" class="btn btn-secondary btn-custom btn-stock">Update Stock</button>
+    </form>
+  </div>
+</div>
+{% endblock %} 

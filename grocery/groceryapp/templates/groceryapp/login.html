@@ -1,0 +1,34 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+{% include 'groceryapp/incudes.html' %}
+
+<br><br>
+
+<div>
+    <h1 class="text-black text-center" style="color: black">LOGIN.</h1><br><br>
+</div>
+
+<div class="container container-fluid">
+    <form id="form" method="POST" class="loginform" style="border-radius: 25px;
+        border: 2px solid #19d4fc; padding: 20px;
+        width: 400px;
+        height: 350px;">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <br><br>
+        <button type="submit" name="login" class="btn btn-info btn-danger btn-block">login</button>
+        <br>
+    </form>
+</div>
+
+<!-- Example of a link to product_detail page for a specific product -->
+<div class="container">
+    <a href="{% url 'home' %}"></a>
+</div>
+
+{% include 'groceryapp/footer.html' %}
+
+{% endblock %}

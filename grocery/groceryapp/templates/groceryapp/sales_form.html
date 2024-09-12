@@ -1,0 +1,14 @@
+{% extends 'groceryapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br/><br/><br/><br/><br/>
+<div class="container">
+    <h1 class="text-center">SALES FORM</h1><br>
+    <form method="POST" action="" style="border-radius: 30px; border: 2px solid #aa0808c8; padding: 20px; background-color: #f8f9fa;">
+        {% csrf_token %}
+        {{ sales_form|crispy }}
+        <input type="submit" class="btn btn-primary btn-block mt-3" value="Submit">
+    </form>
+</div>
+{% endblock %}

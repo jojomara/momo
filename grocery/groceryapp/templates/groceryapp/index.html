@@ -1,0 +1,141 @@
+{% block content %}
+{% load static %}
+
+<br></br>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: auto;
+        background-image: url('{% static 'image/y.png' %}');
+        background-size: cover;
+        background-position: center;
+    }
+    header {
+        background-color: darkcyan;
+        height: 80px;
+        width: auto;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: antiquewhite;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        display: inline-block;
+        width: calc(33.333% - 40px); /* 3 cards per row */
+        box-sizing: border-box;
+    }
+
+    .card h3 {
+        margin-top: 0;
+        color: darkcyan;
+    }
+
+    .card p {
+        margin: 0;
+        font-size: 1.2em;
+        color: palevioletred;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: darkcyan;
+        color: gold;
+        text-decoration: none;
+        border-radius: 5px;
+        float: right;
+    }
+
+    button a {
+        color: white;
+        text-decoration: none;
+        font-weight: bolder;
+    }
+
+    footer {
+        background-color: darkcyan;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        clear: both;
+        text-decoration: none;
+        height: 50px;
+    }
+
+</style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <img src="{% static 'image/y.png' %}" alt="" width="100px" height="80px">
+    </header>
+
+    <a href="{% url 'login' %}"><button>Sign In</button></a>
+    <br>
+    <br>
+
+    <!-- Cards for each item -->
+    <section id="products" class="content">
+      
+        <h2 style="text-align: center;">STOCK LEVEL</h2>
+        <div class="card">
+            <h3>Beans</h3>
+            
+        </div>
+        <div class="card">
+            <h3>Maize</h3>
+           
+        </div>
+        <div class="card">
+            <h3>Millet</h3>
+         
+        </div>
+        <div class="card">
+            <h3>Wheat</h3>
+            
+        </div>
+        <div class="card">
+            <h3>Soya Beans</h3>
+          
+        </div>
+        <div class="card">
+            <h3>Rice</h3>
+          
+        </div>
+       
+        <div class="card">
+            <h3>cowpeaens</h3>
+          
+        </div>
+      </div>
+    </section>
+
+    <footer>
+     <h5> @Joyz, copyright </h5>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+{% endblock %}

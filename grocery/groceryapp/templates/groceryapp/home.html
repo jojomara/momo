@@ -1,0 +1,41 @@
+{% extends 'groceryapp/base.html' %}
+{% block content %}
+
+<br><br>
+
+<div class="container">
+  <h1 class="text-center">ITEMS IN STOCK</h1>
+  <br>
+
+  <div class="container">
+    <form action="" method="GET">
+      {{ product_filters.form }}
+      <input
+        type="submit"
+        value="Search stock"
+        class="btn btn-secondary"
+        style="background-color: palevioletred;"
+      />
+    </form>
+  </div>
+
+  <br>
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+      <div class="card" style="border: 1px solid #ddd;">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.item_name }}</h5>
+          <p class="card-text">Total Quantity: {{ product.total_quantity }}</p>
+          <p class="card-text">Unit Cost: {{ product.unit_cost }}</p>
+          <p class="card-text">Total Price: UGX{{ product.unit_price }}</p>
+          <a href="{% url 'product_detail' product.id %}" class="btn btn-secondary" style="background-color: palevioletred;">Sale ITEM</a>
+          <a href="#" class="btn btn-secondary" style="background-color: darkcyan; margin-left: 10px;">Delete ITEM</a> 
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
